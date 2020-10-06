@@ -40,7 +40,7 @@ function generatePalette(starterPalette) {
     //loop over every level and for each one were going to add it into 'colors'
     for (let level of levels) {
         newPalette.colors[level] = [];
-        //this function does this
+        //this function does this to newPalette
         //colors: {
             // 50: [],
             // 100: [],
@@ -53,8 +53,9 @@ function generatePalette(starterPalette) {
     //next we must loop over every color that we just created...
     // in order to generate a scale with all the different colors with the lightest color to be added to the 50 value, the second lightest to the 100 value, the next lightest to the 200 value, etc.
     for (let color of starterPalette.colors) {
+        //this is what each color looks like {name: "SpicedNectarine", color: "#ffbe76"}
         let scale = getScale(color.color, 10).reverse();
-        // we will push the object field into each array of colors, example //   { name: "bluegrey", color: "#607D8B" }
+        //this is what scale will look like (10) ["#ffffff", "#fff9e6", "#fdf3cc", "#fbedb3", "#f8e89a", "#eedd86", "#ddcd77", "#cdbe68", "#bdaf5a", "#ada04c"]
         for(let i in scale) {
             newPalette.colors[levels[i]].push({
                 name: `${color.name} ${levels[i]}`,
@@ -68,6 +69,7 @@ function generatePalette(starterPalette) {
                     });
         }
     }
+    console.log(newPalette)
     return newPalette;
 }
 
