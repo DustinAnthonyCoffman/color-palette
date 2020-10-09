@@ -11,7 +11,7 @@ import './Navbar.css';
 class Navbar extends Component {
     constructor(props) {
         super(props);
-        this.state = {format: "hex", open: false};
+        this.state = {format: 'hex', open: false};
         this.handleFormatChange = this.handleFormatChange.bind(this);
         this.closeSnackBar = this.closeSnackBar.bind(this);
     }
@@ -53,7 +53,7 @@ class Navbar extends Component {
                     anchorOrigin={{vertical: "bottom", horizontal: "left"}} 
                     open={this.state.open} 
                     autoHideDuration={3000} 
-                    message={<span id="message-id">Color Format Changed To {this.state.format.toUpperCase()} </span>} 
+                    message={<span id="message-id">Color Format Changed To {format.toUpperCase()} </span>} 
                     ContentProps={{
                         "aria-describedby": "message-id"
                     }}
