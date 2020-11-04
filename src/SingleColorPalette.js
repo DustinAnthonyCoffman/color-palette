@@ -4,7 +4,6 @@ import Navbar from './Navbar';
 import ColorBox from './ColorBox';
 import PaletteFooter from './PaletteFooter';
 import styles from './styles/PaletteStyles';
-import Palette from './Palette';
 import {withStyles} from '@material-ui/styles';
 
 
@@ -22,12 +21,15 @@ class SingleColorPalette extends Component {
         let shades = [];
         let allColors = palette.colors;
         for(let key in allColors) {
+            console.log(key)
+            // you get  50, 100, 200, 300, 400, etc.
             shades = shades.concat(
-                //why isnt this key.filter ?
+                //0: {name: "red 50", id: "red", hex: "#ffffff", rgb: "rgb(255,255,255)", rgba: "rgba(255,255,2551.0)"}
                 allColors[key].filter(color => color.id === colorToFilterBy)
             );
         }
         //first shade [0] is white, we don't need it. Slice gives us every shade from 1 onwards
+        //return it to be held in ._shades state because its being called within the constructor
         return shades.slice(1);
     }
 
