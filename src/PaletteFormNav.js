@@ -14,16 +14,28 @@ import PaletteMetaForm from "./PaletteMetaForm";
 class PaletteFormNav extends Component {
     constructor(props) {
         super(props);
-        this.state = {newPaletteName: ""};
+        this.state = {newPaletteName: "", formShowing: false};
+        this.showForm = this.showForm.bind(this);
+        this.hideForm = this.hideForm.bind(this);
     }
     handleChange = (evt) => {
         this.setState({
             [evt.target.name]: evt.target.value
         })
     }
+    showForm() {
+        this.setState({
+            formShowing: true
+        })
+    }
+    hideForm() {
+        this.setState({
+            formShowing: false
+        })
+    }
+
     render() {
-        const {classes, open, palettes, handleSubmit} = this.props;
-        const {newPaletteName} = this.state;
+        const { palettes, handleSubmit} = this.props;
         return (
             <div>
             <CssBaseline />
@@ -44,12 +56,28 @@ class PaletteFormNav extends Component {
                     Create A Palette
                 </Typography>
             </Toolbar>
+                {this.state.formShowing && (
+                <PaletteMetaForm 
+                    palettes={palettes} 
+                    handleSubmit={handleSubmit} 
+                    hideForm={this.hideForm} 
+                    />
+                )} 
             <div>
-                    <PaletteMetaForm palettes={palettes} handleSubmit={handleSubmit} />
-                    <Link to="/">
-                        <Button variant="contained" color="secondary">Go Back</Button>
-                    </Link>
+                <Link to="/">
+                    <Button variant="contained" color="secondary">
+                        Go Back
+                    </Button>
+                </Link>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={this.showForm}
+                    >
+                        Save
+                </Button>
             </div>
+
         </AppBar>
         </div>
         )
