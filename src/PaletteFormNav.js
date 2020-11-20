@@ -8,7 +8,8 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
 import PaletteMetaForm from "./PaletteMetaForm";
-
+import {withStyles} from '@material-ui/core/styles';
+import styles from './styles/PaletteFormNavStyles';
 
 
 class PaletteFormNav extends Component {
@@ -35,7 +36,7 @@ class PaletteFormNav extends Component {
     }
 
     render() {
-        const { palettes, handleSubmit} = this.props;
+        const { classes, open, palettes, handleSubmit} = this.props;
         return (
             <div>
             <CssBaseline />
@@ -43,7 +44,7 @@ class PaletteFormNav extends Component {
                 position="fixed"
                 color="default"
             >
-            <Toolbar>
+            <Toolbar disableGutters={!open}>
                 <IconButton
                     color="inherit"
                     aria-label="open drawer"
@@ -85,4 +86,4 @@ class PaletteFormNav extends Component {
 }
 
 
-export default PaletteFormNav;
+export default withStyles(styles, { withTheme: true })(PaletteFormNav);

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import clsx from 'clsx';
-import { withStyles } from '@material-ui/styles';
-import styles from './styles/NewPaletteForm';
+import { withStyles } from '@material-ui/core/styles';
 import PaletteFormNav from './PaletteFormNav';
 import ColorPickerForm from './ColorPickerForm';
 import Drawer from '@material-ui/core/Drawer';
@@ -12,8 +11,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Button from '@material-ui/core/Button';
 import DraggableColorList from './DraggableColorList';
 import { arrayMove } from 'react-sortable-hoc';
-
-// const drawerWidth = 400;
+import styles from './styles/NewPaletteFormStyles';
 
 
 class NewPaletteForm extends Component {
@@ -143,4 +141,4 @@ class NewPaletteForm extends Component {
 }  
 
 
-export default withStyles(styles, {withTheme: true}) (NewPaletteForm);
+export default withStyles(styles, { withTheme: true })(NewPaletteForm);
