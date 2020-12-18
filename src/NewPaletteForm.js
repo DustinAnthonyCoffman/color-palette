@@ -56,7 +56,6 @@ class NewPaletteForm extends Component {
             colors: arrayMove(colors, oldIndex, newIndex),
         }));
     }
-
     clearPalette = () => {
         this.setState({
             colors: []

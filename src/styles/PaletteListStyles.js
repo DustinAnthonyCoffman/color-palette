@@ -1,17 +1,34 @@
+import sizes from './sizes';
+import bg from './Abstract-Timekeeper.svg';
 export default {
+    "@global": {
+        ".fade-exit": {
+            opacity: 1
+        },
+        ".fade-exit-active": {
+            opacity: 0,
+            transition: "opacity 500ms ease-out"
+        }
+    },
     root: {
-        backgroundColor: "blue",
         height: "100vh",
+        width: "100%",
         display: "flex",
         alignItems: "flex-start",
-        justifyContent: "center"
+        justifyContent: "center",
+        backgroundColor: "#b459ff",
+        backgroundImage: `url(${bg})`,
+        backgroundRepeat: "no-repeat"
     },
     container: {
         width: "50%",
         display: "flex",
         alignItems: "flex-start",
         flexDirection: "column",
-        flexWrap: "wrap"
+        flexWrap: "wrap",
+        [sizes.down("xl")] : {
+            width: "80%"
+        }
 
     },
     nav: {
@@ -27,10 +44,16 @@ export default {
         }
     },
     palettes: {
-        boxSizin: "border-box",
+        boxSizing: "border-box",
         width: "100%",
         display: "grid",
         gridTemplateColumns: "repeat(3, 30%)",
-        gridGap: "5%"
+        gridGap: "5%",
+        [sizes.down("sm")]: {
+            gridTemplateColumns: "repeat(2, 50%)"
+        },
+        [sizes.down("xs")]: {
+            gridTemplateColumns: "repeat(1, 100%)"
+        }
     }
 };
