@@ -12,7 +12,7 @@ import Button from '@material-ui/core/Button';
 import DraggableColorList from './DraggableColorList';
 import { arrayMove } from 'react-sortable-hoc';
 import styles from './styles/NewPaletteFormStyles';
-
+import seedColors from './seedColors';
 
 class NewPaletteForm extends Component {
     static defaultProps = {
@@ -23,7 +23,7 @@ class NewPaletteForm extends Component {
         this.state= {
             open: true,
             newColorName: "",
-            colors: this.props.palettes[0].colors
+            colors: seedColors[0].colors
         }
     }
     handleDrawerOpen = () => {
@@ -62,9 +62,17 @@ class NewPaletteForm extends Component {
         })
     }
     addRandomColor = () => {
-        //take all colors from every palette
+        //grab an array of all colors from every palette
         const allColors = this.props.palettes.map(p => p.colors).flat();
-        let randomNum = Math.floor(Math.random() * allColors.length)
+        let randomNum; 
+        let randomColor;
+        let isDuplicateColor = true;
+        while(isDuplicateColor) {
+            randomNum = Math.floor(Math.random() * allColors.length);
+            randomColor = allColors[randomNum];
+            //execute callback function on each element until it finds one that is truthy to prevent duplicate colors
+            isDuplicateColor = this.state.colors.some(color => color.name === randomColor.name)
+        }
         this.setState({
             colors: [...this.state.colors, allColors[randomNum]]
         })
